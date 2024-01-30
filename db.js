@@ -32,6 +32,19 @@ async function entryList() {
     }
 }
 
+// Function to add an entry
+async function addEntry(mood, gratitude, health, theme, other) {
+    try {
+        await db.query(
+            "INSERT INTO entries (mood, gratitude, health, theme, other) VALUES ($1, $2, $3, $4, $5)",
+            [mood, gratitude, health, theme, other]
+        );
+    } catch (err) {
+        console.log("Something went wrong:", err.stack);
+    };
+};
+
+
 // Function to get a specific entry based on date
 async function getCurrentEntry(currentEntry) {
     try {

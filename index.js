@@ -23,6 +23,10 @@ app.get("/write", (req, res) => {
     res.sendFile("./views/write.html")
 });
 
+app.get("/submit", (req, res) => {
+    res.redirect("/")
+})
+
 dates.forEach(date => {
     app.get("/entry/" + date, (req, res) => {
         res.sendFile("./views/entry.html")
