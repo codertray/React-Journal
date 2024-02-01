@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom"; // Import useHistory hook
 import { addEntry } from "../../db.js";
 import PromptForm from "./PromptForm";
-import EmojiPicker from "./EmojiPicker";
+import EmojiPicker from "./EmojiPicker.jsx/index.js";
 import prompts from "../../public/prompts.jsx";
+import { motion, AnimatePresence } from "framer-motion";
+import CheckIcon from '@mui/icons-material/Check';
 
 function Write() {
     const [stage, setStage] = useState(1);
@@ -52,22 +54,29 @@ function Write() {
     }
 
     return (
-        <div>
-            {stage === 1 && (
-                <EmojiPicker next={logEmoji} />
-            )}
-            {stage >= 2 && stage <= 4 && (
-                <PromptForm
-                    prompt={prompts[Object.keys(prompts)[stage - 2]][Math.floor(Math.random() * prompts[Object.keys(prompts)[stage - 2]].length)]}
-                    next={logPrompt}
-                />
-            )}
-            {stage === 5 && (
-                <div>
-                    <textarea onChange={e => setInput(e.target.value)} rows={4} />
-                    <button onClick={finish}>Finish</button> {/* Replace anchor tag with button */}
-                </div>
-            )}
+        <div className="container">
+            <AnimatePresence>
+                {stage === 1 && (
+                    <motion.div key={stage} initial={{opacity: 0.5, x: -100}} animate={{opacity: 1, x: 0}} exit={{opacity: 0.5, x: 100}}>
+                        <EmojiPicker next={logEmoji} />
+                    </motion.div>
+                )}
+                {stage >= 2 && stage <= 4 && (
+                    <motion.div key={stage} initial={{opacity: 0.5, x: -100}} animate={{opacity: 1, x: 0}} exit={{opacity: 0.5, x: 100}}>
+                        <PromptForm
+                            prompt={prompts[Object.keys(prompts)[stage - 2]][Math.floor(Math.random() * prompts[Object.keys(prompts)[stage - 2]].length)]}
+                            next={logPrompt}
+                        />
+                    </motion.div>
+                )}
+                {stage === 5 && (
+                    <motion.div key={stage} initial={{opacity: 0.5, x: -100}} animate={{opacity: 1, x: 0}} exit={{opacity: 0, x: 0}}>
+                        <h1>Other Thoughts"?</h1>
+                        <textarea onChange={e => setInput(e.target.value)} rows={5} value={input} />
+                        <button className="next-btn" onClick={finish}><CheckIcon /></button> {/* Replace anchor tag with button */}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     );
 }
