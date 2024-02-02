@@ -20,17 +20,21 @@ function Home() {
     }, []);
 
     return (
-        <>
-            <Header />
-            {entries.map(entry => (
-                <Preview
-                    key={entry.id}
-                    entry={entry}
-                /> // Added key prop and entry prop
-            ))}
+        <div>
+            <Header home={true} />
+            {entries.length !== 0 ? (
+                entries.map(entry => (
+                    <Preview
+                        key={entry.id}
+                        entry={entry}
+                    />
+                ))
+            ) : (
+                <h3>No entries yet. Hit the + button to start writing.</h3>
+            )}
             <AddBtn />
             <Footer />
-        </>
+        </div>
     );
 };
 

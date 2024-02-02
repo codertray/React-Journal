@@ -61,4 +61,4 @@ function setCurrentEntry(date) {
 }
 
 // Export the functions
-export { getEntries, entryList, getCurrentEntry, setCurrentEntry };
+export { getEntries, entryList, currentEntry, getCurrentEntry, setCurrentEntry };

@@ -27,9 +27,9 @@ app.get("/submit", (req, res) => {
     res.redirect("/")
 })
 
-dates.forEach(date => {
+dates.length !== 0 && dates.forEach(date => {
     app.get("/entry/" + date, (req, res) => {
-        res.sendFile("./views/entry.html")
+        res.sendFile(__dirname + "/views/entry.html");
     });
 });
 

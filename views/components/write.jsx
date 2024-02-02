@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom"; // Import useHistory hook
 import { addEntry } from "../../db.js";
 import PromptForm from "./PromptForm";
-import EmojiPicker from "./EmojiPicker.jsx/index.js";
+import EmojiPicker from "./EmojiPicker.jsx";
+import Header from "./header.jsx"
+import Footer from "./footer.jsx"
 import prompts from "../../public/prompts.jsx";
 import { motion, AnimatePresence } from "framer-motion";
 import CheckIcon from '@mui/icons-material/Check';
@@ -54,7 +56,8 @@ function Write() {
     }
 
     return (
-        <div className="container">
+        <div className="container form-container">
+            <Header home={false} />
             <AnimatePresence>
                 {stage === 1 && (
                     <motion.div key={stage} initial={{opacity: 0.5, x: -100}} animate={{opacity: 1, x: 0}} exit={{opacity: 0.5, x: 100}}>
@@ -77,6 +80,7 @@ function Write() {
                     </motion.div>
                 )}
             </AnimatePresence>
+            <Footer />
         </div>
     );
 }
