@@ -74,7 +74,7 @@ function Write() {
                 )}
                 {stage === 5 && (
                     <motion.div key={stage} initial={{opacity: 0.5, x: -100}} animate={{opacity: 1, x: 0}} exit={{opacity: 0, x: 0}}>
-                        <h1>Other Thoughts"?</h1>
+                        <h1 className="prompt">Other Thoughts"?</h1>
                         <textarea onChange={e => setInput(e.target.value)} rows={5} value={input} />
                         <button className="next-btn" onClick={finish}><CheckIcon /></button> {/* Replace anchor tag with button */}
                     </motion.div>

@@ -26,12 +26,14 @@ function Entry() {
     return (
         <div className="container">
             <Header home={false} />
-            <h1>Entry {entry.date}</h1>
-            <p>Mood: {entry.mood}</p>
-            <PromptBlock preview={false} content={entry.gratitude} />
-            <PromptBlock preview={false} content={entry.health} />
-            <PromptBlock preview={false} content={entry.theme} />
-            <PromptBlock preview={false} content={entry.other} />
+            <div className="entry">
+                <h1>Entry {entry.date}</h1>
+                <p>Mood: {entry.mood}</p>
+                <PromptBlock preview={false} content={entry.gratitude} />
+                <PromptBlock preview={false} content={entry.health} />
+                <PromptBlock preview={false} content={entry.theme} />
+                <PromptBlock preview={false} content={entry.other} />
+            </div>
             <Footer />
         </div>
     );
